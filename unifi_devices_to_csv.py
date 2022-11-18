@@ -34,7 +34,7 @@ for device in devices.find():
             device_name = device["name"]
         else:
             device_name = ""
-        device_row = [device_name, device["model"], device["mac"], device["version"], sites_dict[device["site_id"]]["desc"], device["model_in_lts"], device["model_in_eol"], device["adopted"], "https://" + hostname + ":8443/manage/" + sites_dict[device["site_id"]]["name"] + "/devices"]
+        device_row = [device_name, device["model"], device["mac"], device["version"], sites_dict[device["site_id"]]["desc"], device["model_in_lts"], device["model_in_eol"], device["adopted"],hostname, "https://" + hostname + ":8443/manage/" + sites_dict[device["site_id"]]["name"] + "/devices"]
         device_rows.append(device_row)
         print(device_row)
     except Exception as e:
@@ -42,6 +42,6 @@ for device in devices.find():
 
 with open('devices.csv', 'w', newline='') as file:
     writer = csv.writer(file)
-    writer.writerow(["Name", "Model", "Mac", "Firmware", "Site", "LTS", "EOL", "Adopted", "Link"])
+    writer.writerow(["Name", "Model", "Mac", "Firmware", "Site", "LTS", "EOL", "Adopted","Site Name", "Link"])
     for device_row in device_rows:
            writer.writerow(device_row)
